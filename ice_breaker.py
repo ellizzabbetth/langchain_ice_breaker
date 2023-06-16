@@ -20,6 +20,7 @@ if __name__ == "__main__":
     linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_profile_url)
 
     twitter_username = twitter_lookup_agent(name=name)
+    print(twitter_username)
     tweets = scrape_user_tweets(username=twitter_username, num_tweets=5)
     #scrape_user_tweets(username="Elon Musk", num_tweets=100)
 

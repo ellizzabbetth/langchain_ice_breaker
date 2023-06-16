@@ -10,6 +10,8 @@ def lookup(name: str) -> str:
     llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
     template = """given the name {name_of_person} I want you to find a link to their Twitter profile page, and extract from it their username.
        In Your Final answer only the person's username"""
+    
+    print('get profile url :: in twitter lookup agent', get_profile_url)
 
     tools_for_agent = [
         Tool(
