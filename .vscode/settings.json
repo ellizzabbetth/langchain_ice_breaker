@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/ellizzabbetth/.local/share/virtualenvs/ellizzabbetth-EwHxp1as/bin/python"
+    "python.pythonPath": "/home/ellizzabbetth/.local/share/virtualenvs/ellizzabbetths-EwHxp1as/bin/python",
+    "python.terminal.activateEnvironment": true
 }

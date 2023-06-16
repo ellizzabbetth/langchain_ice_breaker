@@ -6,9 +6,11 @@ name = "pypi"
 [packages]
 black = "*"
 langchain = "*"
+google-search-results = "*"
+openai = "*"
 cd = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3.11.4"
