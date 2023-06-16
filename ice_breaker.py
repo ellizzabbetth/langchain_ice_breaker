@@ -8,13 +8,14 @@ from agents.linkedin_lookup_agent import lookup as linkedin_lookup_agent
 from agents.twitter_lookup_agent import lookup as twitter_lookup_agent
 from third_parties.linkedin import scrape_linkedin_profile
 from third_parties.twitter import scrape_user_tweets
+from output_parsers import person_intel_parser, PersonIntel
 
 information = """
 
 """
-name = "Elon Musk"
-if __name__ == "__main__":
-    print("Hello LangChain!")
+name = "Harrison Chase"
+def ice_break(name:str) ->PersonIntel:
+
 
     linkedin_profile_url = linkedin_lookup_agent(name=name)
     linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_profile_url)
@@ -24,17 +25,22 @@ if __name__ == "__main__":
     tweets = scrape_user_tweets(username=twitter_username, num_tweets=5)
     #scrape_user_tweets(username="Elon Musk", num_tweets=100)
 
+
+    # Linkedin information {linkedin_information} and
     summary_template = """
          given the Linkedin information {linkedin_information} and twitter {twitter_information} about a person from I want you to create:
          1. a short summary
          2. two interesting facts about them
          3. A topic that may interest them
-         4. 2 creative Ice breakers to open a conversation with them 
+         4. 2 creative Ice breakers to open a conversation with them
+         \n{format_instructions}
      """
+
 
     summary_prompt_template = PromptTemplate(
         input_variables=["linkedin_information", "twitter_information"],
         template=summary_template,
+        partial_variables = {"format_instructions":person_intel_parser.get_format_instructions()}
     )
 
     llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
@@ -43,5 +49,11 @@ if __name__ == "__main__":
     # linkedin_profile_url = linkedin_lookup_agent(name="Eden Marco")
     # linkedin_data = linkedin_data = scrape_linkedin_profile(linkedin_profile_url='https://www.linkedin/in/harrison-chase-961287118/')
     # print(linkedin_data)
-    print(chain.run(linkedin_information=linkedin_data, twitter_information=tweets))
+    result = chain.run(linkedin_information=linkedin_data, twitter_information=tweets) #linkedin_information=linkedin_data,
+    print(result)
+    return person_intel_parser.parse(result)
 
+if __name__ == "__main__":
+
+    print("Hello LangChain!")
+    ice_break(name="Harrison Chase")
