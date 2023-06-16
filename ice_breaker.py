@@ -1,6 +1,7 @@
 from langchain import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
+from typing import Tuple
 import os
 import sys
 
@@ -14,7 +15,7 @@ information = """
 
 """
 name = "Harrison Chase"
-def ice_break(name:str) ->PersonIntel:
+def ice_break(name:str) -> Tuple[PersonIntel, str]:
 
 
     linkedin_profile_url = linkedin_lookup_agent(name=name)
@@ -51,7 +52,7 @@ def ice_break(name:str) ->PersonIntel:
     # print(linkedin_data)
     result = chain.run(linkedin_information=linkedin_data, twitter_information=tweets) #linkedin_information=linkedin_data,
     print(result)
-    return person_intel_parser.parse(result)
+    return person_intel_parser.parse(result), linkedin_data.get("profile_pic_url")
 
 if __name__ == "__main__":
 

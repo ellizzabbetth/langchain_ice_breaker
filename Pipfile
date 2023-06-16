@@ -10,6 +10,7 @@ google-search-results = "*"
 openai = "*"
 cd = "*"
 tweepy = "*"
+flask = "*"
 
 [dev-packages]
 
