@@ -17,3 +17,18 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 To install dependencies:  pipenv install
+ex: pipenv install tweepy
+
+TO RUN on Ubuntu:
+
+
+
+0
+
+It looks like your interpreter is not picking up pipenv environment
+
+1) check pipenv --where
+
+2) see if in your settings.json file that your pythonPath variable is set to the location {pipenv --where}/bin/python{some version}
+
+3) run again

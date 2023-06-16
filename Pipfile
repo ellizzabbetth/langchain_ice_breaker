@@ -9,6 +9,7 @@ langchain = "*"
 google-search-results = "*"
 openai = "*"
 cd = "*"
+tweepy = "*"
 
 [dev-packages]
 
